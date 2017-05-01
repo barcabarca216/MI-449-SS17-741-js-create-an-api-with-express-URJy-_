@@ -32,20 +32,20 @@ app.post('/todos', function (request, response) {
   response.redirect('/todos/' + slug)
 })
 
-app.delete('/todos/:slug/:id', function (request, response) {
+app.delete('/todos/:slug', function (request, response) {
   delete todos[request.params.slug]
   response.redirect('/todos')
 })
 
-app.put('/products/:slug/:id', function (request, response) {
+app.put('/todos/:slug', function (request, response) {
   var todos = todos[request.params.slug]
   if (request.body.name !== undefined) {
     todos.name = request.body.name.trim()
   }
-  if (request.body.price !== undefined) {
-    todos.completed = request.params.slug
+  if (request.body.completed !== undefined) {
+    todos.completed = request.body.completed
   }
-  response.redirect('/todos/:id')
+  response.redirect('/todos/' + request.params.slug)
 })
 
 app.use(function (request, response, next) {
