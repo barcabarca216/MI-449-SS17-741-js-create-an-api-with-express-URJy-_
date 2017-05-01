@@ -38,12 +38,12 @@ app.delete('/todos/:slug', function (request, response) {
 })
 
 app.put('/todos/:slug', function (request, response) {
-  var todos = todos[request.params.slug]
+  var todo = todos[request.params.slug]
   if (request.body.name !== undefined) {
-    todos.name = request.body.name.trim()
+    todo.name = request.body.name.trim()
   }
   if (request.body.completed !== undefined) {
-    todos.completed = request.body.completed
+    todo.completed = request.body.completed
   }
   response.redirect('/todos/' + request.params.slug)
 })
